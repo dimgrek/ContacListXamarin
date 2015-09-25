@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ContacListXamarin.Contacts;
 using Xamarin.Forms;
 
@@ -8,27 +7,30 @@ namespace ContacListXamarin.Views
     public partial class AddContactPage : ContentPage
     {
         readonly IContactService _contactService = new ContactService();
-        public ICommand SaveCommand { get; private set; }
-        public ICommand CancelCommand { get; set; }
 
         public AddContactPage()
         {
             InitializeComponent();
+            SaveCommand = new Command(Add);
+            CancelCommand = new Command(Cancel);
             BindingContext = this;
 
-            AddContactBtn.Clicked += OnAddContactBtnClicked;
-            CancelContactBtn.Clicked += OnCancelContactBtnClicked;
         }
 
-        async void OnCancelContactBtnClicked(object sender, EventArgs e)
+        public ICommand TransferInfoCommand { get; private set; }
+
+        public ICommand SaveCommand { get; private set; }
+        public ICommand CancelCommand { get; private set; }
+
+        async void Cancel()
         {
             await Navigation.PopAsync();
         }
 
 
-        async void OnAddContactBtnClicked(object sender, EventArgs e)
+        async void Add()
         {
-            _contactService.Add(Name.Text);
+            _contactService.Add(Name.Text, LastName.Text, Address.Text, Email.Text, Telephone.Text, Company.Text);
             await Navigation.PopAsync();
         }
     }

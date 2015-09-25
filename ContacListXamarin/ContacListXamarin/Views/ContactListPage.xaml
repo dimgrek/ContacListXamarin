@@ -4,10 +4,10 @@
              x:Class="ContacListXamarin.Views.ContactListPage"
              Title="All contacts">
   <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="addContactBtn" Text="AddCommand" Command="{Binding Add}"/>
+    <ToolbarItem x:Name="addContactBtn" Text="Add" Command="{Binding AddCommand}"/>
   </ContentPage.ToolbarItems>
   <ListView x:Name="ContactList">
-    <ListView.ItemTemplate>
+    <!--<ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
           <ViewCell.ContextActions>
@@ -19,6 +19,6 @@
           </StackLayout>
         </ViewCell>
       </DataTemplate>
-    </ListView.ItemTemplate>
+    </ListView.ItemTemplate>-->
   </ListView>
 </ContentPage>

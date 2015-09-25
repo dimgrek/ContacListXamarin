@@ -29,9 +29,9 @@
         <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Company" Placeholder="Company" />
         <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Telephone" Placeholder="Telephone" />
         <Entry Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Email" Placeholder="Email" />
-        <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Address" Placeholder="AddCommandress" />
-        <Button Grid.Row="6" Grid.Column="0" x:Name="AddContactBtn" Text="Save" Command="{Binding Save}"/>
-        <Button Grid.Row="6" Grid.Column="1" x:Name="CancelContactBtn" Text="Cancel" Command="{Binding Cancel}"/>
+        <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Address" Placeholder="Address" />
+        <Button Grid.Row="6" Grid.Column="0" x:Name="AddContactBtn" Text="Save" Command="{Binding SaveCommand}"/>
+        <Button Grid.Row="6" Grid.Column="1" x:Name="CancelContactBtn" Text="Cancel" Command="{Binding CancelCommand}"/>
 
 
       </Grid>
