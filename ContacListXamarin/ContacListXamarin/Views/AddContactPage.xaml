@@ -4,8 +4,8 @@
              x:Class="ContacListXamarin.Views.AddContactPage"
              Title="Contact">
   <ContentPage.Content>
-    
-      <Grid x:Name="AddContactGrid">
+    <StackLayout>
+      <Grid x:Name="AddContactGrid" Padding="10, 10, 10, 0">
 
         <Grid.RowDefinitions>
           <RowDefinition Height="*" />
@@ -14,12 +14,27 @@
           <RowDefinition Height="*" />
           <RowDefinition Height="*" />
           <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          
         </Grid.RowDefinitions>
 
 
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-    </Grid>
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Entry Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Name" Placeholder="Name" />
+        <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="LastName" Placeholder="Last Name" />
+        <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Company" Placeholder="Company" />
+        <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Telephone" Placeholder="Telephone" />
+        <Entry Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Email" Placeholder="Email" />
+        <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Address" Placeholder="AddCommandress" />
+        <Button Grid.Row="6" Grid.Column="0" x:Name="AddContactBtn" Text="Save" Command="{Binding Save}"/>
+        <Button Grid.Row="6" Grid.Column="1" x:Name="CancelContactBtn" Text="Cancel" Command="{Binding Cancel}"/>
+
+
+      </Grid>
+    </StackLayout>
   </ContentPage.Content>
 </ContentPage>

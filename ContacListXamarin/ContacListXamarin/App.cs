@@ -8,10 +8,8 @@ namespace ContacListXamarin
         public App()
         {
             // The root page of your application
-            MainPage = new ContentPage
-            {
-                Content = new NavigationPage(new ContactListPage());
-            };
+            MainPage = new NavigationPage(new ContactListPage());
+            
         }
 
         protected override void OnStart()

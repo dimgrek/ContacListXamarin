@@ -4,7 +4,21 @@
              x:Class="ContacListXamarin.Views.ContactListPage"
              Title="All contacts">
   <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="addContactBtn" Text="Add" />
+    <ToolbarItem x:Name="addContactBtn" Text="AddCommand" Command="{Binding Add}"/>
   </ContentPage.ToolbarItems>
-  <ListView x:Name="ContactList" />
+  <ListView x:Name="ContactList">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.ContextActions>
+            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+               Text="Delete" IsDestructive="True" />
+          </ViewCell.ContextActions>
+          <StackLayout Padding="15,0">
+            <Label Text="{Binding title}" />
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
 </ContentPage>
