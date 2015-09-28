@@ -17,7 +17,6 @@ namespace ContacListXamarin.ViewModels
         {
             _service = service;
             _navigation = navigation;
-
             Contacts = new ObservableCollection<ContactItem>(_service.GetThings());
             AddCommand = new Command(Add);
         }

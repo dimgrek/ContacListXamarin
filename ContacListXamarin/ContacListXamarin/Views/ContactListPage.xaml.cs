@@ -13,12 +13,18 @@ namespace ContacListXamarin.Views
         public ContactListPage()
         {
             InitializeComponent();
-            var vm = new ContacListViewModel(DependencyService.Get<IContactService>(), Navigation);
-            BindingContext = vm;
+            var _vm = new ContacListViewModel(DependencyService.Get<IContactService>(), Navigation);
+            BindingContext = _vm;
             ContactList.ItemSelected += OnSelection;
         }
 
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var contact = _contactService.GetThings();
+            ContactList.ItemsSource = contact;
+        }
+
         public void OnDelete(object sender, EventArgs e)
         {
             //TODO: cast sender to MenuItem, show nice UIAlert
@@ -32,9 +38,8 @@ namespace ContacListXamarin.Views
             var contactItem = e.SelectedItem as ContactItem;
             if (contactItem == null)
                 return;
-            ((ListView)sender).SelectedItem = null;
+            //((ListView)sender).SelectedItem = null;
             await Navigation.PushAsync(new ContactViewPage(contactItem.ID));
-
         }
     }
 }

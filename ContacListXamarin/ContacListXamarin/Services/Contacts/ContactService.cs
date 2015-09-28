@@ -10,7 +10,8 @@ namespace ContacListXamarin.Contacts
     public interface IContactService
     {
         void Add(string name, string lastName, string address, string email, string telephone, string company);
-        void Delete(int id);
+        void Delete(ContactItem contactItem);
+        //void Update(ContactItem contactItem);
         IEnumerable<ContactItem> GetThings();
     }
 
@@ -24,10 +25,10 @@ namespace ContacListXamarin.Contacts
             _connection.CreateTable<ContactItem>();
         }
 
-        public void Delete(int id)
-        {
-            _connection.Delete(id);
-        }
+        //public void Update(ContactItem contactItem)
+        //{
+        //    _connection.Update(contactItem);
+        //}
 
         public IEnumerable<ContactItem> GetThings()
         {
@@ -52,6 +53,12 @@ namespace ContacListXamarin.Contacts
                 Email = email
             };
             _connection.Insert(contactItem);
+        }
+
+        public void Delete(ContactItem contactItem)
+        {
+            _connection.Delete(contactItem);
+            _connection.UpdateAll(_connection.Table<ContactItem>());
         }
     }
 }

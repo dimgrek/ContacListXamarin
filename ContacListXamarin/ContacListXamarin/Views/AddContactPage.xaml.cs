@@ -14,7 +14,6 @@ namespace ContacListXamarin.Views
             SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
             BindingContext = this;
-
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -25,7 +24,7 @@ namespace ContacListXamarin.Views
             await Navigation.PopAsync();
         }
 
-
+       
         async void Save()
         {
             _contactService.Add(Name.Text, LastName.Text, Address.Text, Email.Text, Telephone.Text, Company.Text);

@@ -6,6 +6,8 @@ namespace ContacListXamarin.Views
 {
     public partial class ContactViewPage : ContentPage
     {
+        private readonly IContactService _contactService = new ContactService();
+
         public ContactViewPage(int id)
         {
             InitializeComponent();

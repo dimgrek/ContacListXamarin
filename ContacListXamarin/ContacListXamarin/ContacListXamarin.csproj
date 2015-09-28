@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Contacts\ContactService.cs" />
+    <Compile Include="Services\Contacts\ContactService.cs" />
     <Compile Include="Model\ContactItem.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
