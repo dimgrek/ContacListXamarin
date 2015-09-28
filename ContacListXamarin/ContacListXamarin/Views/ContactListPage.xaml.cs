@@ -9,12 +9,13 @@ namespace ContacListXamarin.Views
     public partial class ContactListPage : ContentPage
     {
         readonly IContactService _contactService = new ContactService();
+        private ContacListViewModel _vm;
 
         public ContactListPage()
         {
-            InitializeComponent();
-            var _vm = new ContacListViewModel(DependencyService.Get<IContactService>(), Navigation);
+            _vm = new ContacListViewModel(DependencyService.Get<IContactService>(), Navigation);
             BindingContext = _vm;
+            InitializeComponent();
             ContactList.ItemSelected += OnSelection;
         }
 
@@ -39,7 +40,7 @@ namespace ContacListXamarin.Views
             if (contactItem == null)
                 return;
             //((ListView)sender).SelectedItem = null;
-            await Navigation.PushAsync(new ContactViewPage(contactItem.ID));
+            await Navigation.PushAsync(new ContactViewPage(contactItem.ID, Navigation));
         }
     }
 }
