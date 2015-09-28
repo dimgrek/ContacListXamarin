@@ -1,4 +1,5 @@
-﻿using ContacListXamarin.Views;
+﻿using ContacListXamarin.Contacts;
+using ContacListXamarin.Views;
 using Xamarin.Forms;
 
 namespace ContacListXamarin
@@ -8,6 +9,7 @@ namespace ContacListXamarin
         public App()
         {
             // The root page of your application
+            DependencyService.Register<ContactService>();
             MainPage = new NavigationPage(new ContactListPage());
             
         }

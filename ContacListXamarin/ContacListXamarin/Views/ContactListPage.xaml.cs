@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Windows.Input;
 using ContacListXamarin.Contacts;
+using ContacListXamarin.Model;
+using ContacListXamarin.ViewModels;
 using Xamarin.Forms;
 
 namespace ContacListXamarin.Views
@@ -12,40 +13,28 @@ namespace ContacListXamarin.Views
         public ContactListPage()
         {
             InitializeComponent();
-            AddCommand = new Command(Add);
-            BindingContext = this;
-        }
-
-        public ICommand AddCommand { get; private set; }
-
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            var contacts = _contactService.GetThings();
-            ContactList.ItemsSource = contacts;
+            var vm = new ContacListViewModel(DependencyService.Get<IContactService>(), Navigation);
+            BindingContext = vm;
             ContactList.ItemSelected += OnSelection;
         }
 
+        
         public void OnDelete(object sender, EventArgs e)
         {
+            //TODO: cast sender to MenuItem, show nice UIAlert
             var mi = ((MenuItem)sender);
             DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
         }
 
-        async void Add()
-        {
-            await Navigation.PushAsync(new AddContactPage());
-        }
 
-        void OnSelection(object sender, SelectedItemChangedEventArgs e)
+        async void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null)
-            {
-                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
-            }
-            DisplayAlert("Item Selected", e.SelectedItem.ToString(), "Ok");
-            //((ListView)sender).SelectedItem = null; //uncomment line if you want to disable the visual selection state.
+            var contactItem = e.SelectedItem as ContactItem;
+            if (contactItem == null)
+                return;
+            ((ListView)sender).SelectedItem = null;
+            await Navigation.PushAsync(new ContactViewPage(contactItem.ID));
+
         }
     }
 }

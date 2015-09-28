@@ -6,18 +6,16 @@ namespace ContacListXamarin.Views
 {
     public partial class AddContactPage : ContentPage
     {
-        readonly IContactService _contactService = new ContactService();
+        private readonly IContactService _contactService = new ContactService();
 
         public AddContactPage()
         {
             InitializeComponent();
-            SaveCommand = new Command(Add);
+            SaveCommand = new Command(Save);
             CancelCommand = new Command(Cancel);
             BindingContext = this;
 
         }
-
-        public ICommand TransferInfoCommand { get; private set; }
 
         public ICommand SaveCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
@@ -28,7 +26,7 @@ namespace ContacListXamarin.Views
         }
 
 
-        async void Add()
+        async void Save()
         {
             _contactService.Add(Name.Text, LastName.Text, Address.Text, Email.Text, Telephone.Text, Company.Text);
             await Navigation.PopAsync();

@@ -21,14 +21,21 @@
 
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" x:Name="Name" Text="Binding Name"/>
-        <Label Grid.Row="1" Grid.Column="0" x:Name="LastName"  />
-        <Label Grid.Row="2" Grid.Column="0" x:Name="Company"  />
-        <Label Grid.Row="3" Grid.Column="0" x:Name="Telephone"  />
-        <Entry Grid.Row="4" Grid.Column="0" x:Name="Email"  />
-        <Entry Grid.Row="5" Grid.Column="0" x:Name="Address"  />
+        <Label Grid.Row="0" Grid.Column="0" Text="Name:" />
+          <Label Grid.Row="0" Grid.Column="1" x:Name="Name" Text="{Binding Name}"/>
+        <Label Grid.Row="1" Grid.Column="0" Text="Last Name:" />
+          <Label Grid.Row="1" Grid.Column="1" x:Name="LastName" Text="{Binding LastName}" />
+        <Label Grid.Row="2" Grid.Column="0" Text="Company:" />
+          <Label Grid.Row="2" Grid.Column="1" x:Name="Company"  Text="{Binding Company}"/>
+        <Label Grid.Row="3" Grid.Column="0" Text="Telephone:" />
+          <Label Grid.Row="3" Grid.Column="1" x:Name="Telephone"  Text="{Binding Telephone}"/>
+        <Label Grid.Row="4" Grid.Column="0" Text="Email:" />
+          <Label Grid.Row="4" Grid.Column="1" x:Name="Email"  Text="{Binding Email}"/>
+        <Label Grid.Row="5" Grid.Column="0" Text="Address:" />
+          <Label Grid.Row="5" Grid.Column="1" x:Name="Address" Text="{Binding Address}" />
 
       </Grid>
     </StackLayout>

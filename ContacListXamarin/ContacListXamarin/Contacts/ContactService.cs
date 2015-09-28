@@ -11,7 +11,7 @@ namespace ContacListXamarin.Contacts
     {
         void Add(string name, string lastName, string address, string email, string telephone, string company);
         void Delete(int id);
-        IEnumerable<string> GetThings();
+        IEnumerable<ContactItem> GetThings();
     }
 
     public class ContactService:IContactService
@@ -29,13 +29,18 @@ namespace ContacListXamarin.Contacts
             _connection.Delete(id);
         }
 
-        public IEnumerable<string> GetThings()
+        public IEnumerable<ContactItem> GetThings()
         {
             var contacts = _connection.Table<ContactItem>().ToList();
-            return contacts.Select(contact => $"{contact.Name} {contact.LastName}").ToList();
+            return contacts;
         }
 
-        public void Add(string name, string lastName, string address, string email, string telephone, string company)
+        public void Add(string name, 
+            string lastName, 
+            string address, 
+            string email, 
+            string telephone, 
+            string company)
         {
             var contactItem = new ContactItem
             {
