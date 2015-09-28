@@ -24,7 +24,7 @@ namespace ContacListXamarin.Views
             await Navigation.PopAsync();
         }
 
-       
+
         async void Save()
         {
             _contactService.Add(Name.Text, LastName.Text, Address.Text, Email.Text, Telephone.Text, Company.Text);

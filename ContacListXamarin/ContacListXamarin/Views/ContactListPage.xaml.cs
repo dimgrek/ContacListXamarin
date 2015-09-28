@@ -28,9 +28,10 @@ namespace ContacListXamarin.Views
 
         public void OnDelete(object sender, EventArgs e)
         {
-            //TODO: cast sender to MenuItem, show nice UIAlert
-            var mi = ((MenuItem)sender);
-            DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+            var contactToDelete = (ContactItem)((MenuItem)sender).CommandParameter;
+            _contactService.Delete(contactToDelete);
+            var contact = _contactService.GetThings();
+            ContactList.ItemsSource = contact;
         }
 
 
