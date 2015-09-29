@@ -8,45 +8,40 @@ namespace ContacListXamarin.Views
 {
     public partial class ContactListPage : ContentPage
     {
-        readonly IContactService _contactService = new ContactService();
         private ContacListViewModel _vm;
 
         public ContactListPage()
         {
             _vm = new ContacListViewModel(DependencyService.Get<IContactService>());
             BindingContext = _vm;
-            _vm.AddItemClicked += GoToAddContactPage;
+            _vm.AddItemClicked += OnAddBtnClicked;
+            _vm.ItemSelected += OnItemSelected;
             InitializeComponent();
-            ContactList.ItemSelected += OnSelection;
         }
 
-        async void GoToAddContactPage(object sender, EventArgs e)
+        async void OnItemSelected(object sender, ItemSelectedEventArgs e)
         {
-            await Navigation.PushAsync(new AddContactPage());
+            await Navigation.PushAsync(new ContactViewPage(e.Id));
         }
 
-        protected override void OnAppearing()
+        async void OnAddBtnClicked(object sender, EventArgs e)
         {
-            _vm.Update();
-            var contact = _contactService.GetThings();
-            ContactList.ItemsSource = contact;
+            await Navigation.PushAsync(new AddContactPage(_vm.Contacts));
+        }
+
+        private void OnSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (_vm.OnSelectionCommand.CanExecute(e))
+                _vm.OnSelectionCommand.Execute(e);
         }
 
         private void OnDelete(object sender, EventArgs e)
         {
-            var contactToDelete = (ContactItem)((MenuItem)sender).CommandParameter;
-            _contactService.Delete(contactToDelete);
-            var contact = _contactService.GetThings();
-            ContactList.ItemsSource = contact;
-        }
+            var item = ((MenuItem)sender).CommandParameter as ContactItem;
+            var args = new SelectedItemChangedEventArgs(item);
 
-
-        async void OnSelection(object sender, SelectedItemChangedEventArgs e)
-        {
-            var contactItem = e.SelectedItem as ContactItem;
-            if (contactItem == null)
-                return;
-            await Navigation.PushAsync(new ContactViewPage(contactItem.ID));
+            if (_vm.DeleteCommand.CanExecute(args))
+                _vm.DeleteCommand.Execute(args);
         }
     }
 }

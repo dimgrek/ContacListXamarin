@@ -29,7 +29,7 @@
         <Entry Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Company" Text="{Binding Company}"/>
         <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Telephone" Keyboard="Telephone" Text="{Binding Telephone}"/>
         <Entry Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Email" Keyboard="Email" Text="{Binding Email}"/>
-        <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Address" Text="{Binding Addresss}"/>
+        <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Placeholder="Address" Text="{Binding Address}"/>
         <Button Grid.Row="6" Grid.Column="0" x:Name="AddContactBtn" Text="Save" Command="{Binding SaveCommand}"/>
         <Button Grid.Row="6" Grid.Column="1" x:Name="CancelContactBtn" Text="Cancel" Command="{Binding CancelCommand}"/>
 

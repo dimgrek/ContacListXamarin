@@ -11,7 +11,6 @@ namespace ContacListXamarin.Contacts
     {
         void Add(string name, string lastName, string address, string email, string telephone, string company);
         void Delete(ContactItem contactItem);
-        //void Update(ContactItem contactItem);
         IEnumerable<ContactItem> GetThings();
     }
 
@@ -24,11 +23,6 @@ namespace ContacListXamarin.Contacts
             _connection = DependencyService.Get<ISQLite>().GetConnection();
             _connection.CreateTable<ContactItem>();
         }
-
-        //public void Update(ContactItem contactItem)
-        //{
-        //    _connection.Update(contactItem);
-        //}
 
         public IEnumerable<ContactItem> GetThings()
         {

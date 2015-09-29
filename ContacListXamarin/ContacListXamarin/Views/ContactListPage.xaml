@@ -6,13 +6,12 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
   </ContentPage.ToolbarItems>
-  <ListView ItemsSource="{Binding Contacts}" ItemSelected="{Binding OnSelectionCommand}">
+  <ListView ItemsSource="{Binding Contacts}" ItemSelected="OnSelected">
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
           <ViewCell.ContextActions>
-            <MenuItem Clicked="OnDelete" Command="{Binding DeleteCommand}" 
-                 CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
           </ViewCell.ContextActions>
           <Grid Padding="20, 0, 0, 0">
             <Grid.RowDefinitions>
@@ -23,10 +22,10 @@
               <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" VerticalOptions="Center"/>
-              <Label Grid.Row="0" Grid.Column="1" Text="{Binding LastName}" VerticalOptions="Center" />
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding LastName}" VerticalOptions="Center" />
           </Grid>
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
-  </ListView>
+    </ListView>
 </ContentPage>
