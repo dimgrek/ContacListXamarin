@@ -14,7 +14,7 @@ namespace ThingsILove.iOS.Services.Database
         {
             var sqliteFilename = "TodoSQLite.db3";
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // Documents folder
-            var libraryPath = Path.Combine(documentsPath, "..", "Library"); // Library folder
+            var libraryPath = documentsPath;//Path.Combine(documentsPath, "..", "Library"); // Library folder
             var path = Path.Combine(libraryPath, sqliteFilename);
             // Create the connection
             var conn = new SQLiteConnection(path);

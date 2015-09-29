@@ -10,8 +10,11 @@ namespace ContacListXamarin.ViewModels
 {
     public class ContacListViewModel
     {
+        private IContactService _service;
+
         public ContacListViewModel(IContactService service)
         {
+            _service = service;
             Contacts = new ObservableCollection<ContactItem>(service.GetThings());
             AddCommand = new Command(Add);
             DeleteCommand = new Command<SelectedItemChangedEventArgs>(Delete);
@@ -26,10 +29,6 @@ namespace ContacListXamarin.ViewModels
         public event EventHandler<ItemSelectedEventArgs> ItemSelected;
         public event EventHandler<ItemSelectedEventArgs> ItemDeleted;
 
-        public void Update()
-        {
-            Contacts = Contacts;
-        }
 
         private void Add()
         {
@@ -43,6 +42,7 @@ namespace ContacListXamarin.ViewModels
                 return;
 
             Contacts.Remove(Contacts.Single(o => o.ID == contactItem.ID));
+            _service.Delete(contactItem);
             ItemDeleted?.Invoke(this, new ItemSelectedEventArgs { Id = contactItem.ID });
         }
 
@@ -51,18 +51,24 @@ namespace ContacListXamarin.ViewModels
             var contactItem = e.SelectedItem as ContactItem;
             if (contactItem == null)
                 return;
-
+            var itemId = contactItem.ID;
             ItemSelected?.Invoke(this, new ItemSelectedEventArgs { Id = contactItem.ID });
         }
 
         public void OnNewItemAdded(object sender, ContactItemEventArgs e)
         {
             Contacts.Add(e.ContactItem);
+            _service.Add(e.ContactItem.Name, 
+                e.ContactItem.LastName, 
+                e.ContactItem.Address, 
+                e.ContactItem.Email, 
+                e.ContactItem.Telephone, 
+                e.ContactItem.Company);
         }
     }
 
     public class ItemSelectedEventArgs
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

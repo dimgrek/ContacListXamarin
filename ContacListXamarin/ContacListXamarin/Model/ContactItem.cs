@@ -1,12 +1,18 @@
-﻿using SQLite;
+﻿using System;
+using SQLite;
 
 namespace ContacListXamarin.Model
 {
     [Table("ContactItem")]
-    public class ContactItem 
+    public class ContactItem
     {
-        [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        public ContactItem()
+        {
+            ID = Guid.NewGuid();
+        }
+
+        [PrimaryKey]
+        public Guid ID { get; set; }
 
         public string Name { get; set; }
         public string LastName { get; set; }

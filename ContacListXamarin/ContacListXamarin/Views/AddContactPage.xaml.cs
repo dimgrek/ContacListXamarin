@@ -14,6 +14,7 @@ namespace ContacListXamarin.Views
             _contactsViewModel = contactsViewModel;
             var vm = new ContactViewModel();
             vm.ItemAdded += _contactsViewModel.OnNewItemAdded;
+            vm.ItemSaved += OnBtnClicked;
             vm.ItemCanceled += OnBtnClicked;
             BindingContext = vm;
         }

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ContacListXamarin.Model;
-using ContacListXamarin.Services.Database;
-using SQLite;
-using Xamarin.Forms;
+﻿ using System.Collections.Generic;
+ using System.Linq;
+ using ContacListXamarin.Model;
+ using ContacListXamarin.Services.Database;
+ using SQLite;
+ using Xamarin.Forms;
 
 namespace ContacListXamarin.Contacts
 {
