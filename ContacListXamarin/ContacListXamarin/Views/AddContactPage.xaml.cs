@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using ContacListXamarin.Model;
 using ContacListXamarin.ViewModels;
 using Xamarin.Forms;
 
@@ -8,14 +6,14 @@ namespace ContacListXamarin.Views
 {
     public partial class AddContactPage : ContentPage
     {
-        private readonly ObservableCollection<ContactItem> _contacts;
+        private readonly ContacListViewModel _contactsViewModel;
 
-        public AddContactPage(ObservableCollection<ContactItem> contacts)
+        public AddContactPage(ContacListViewModel contactsViewModel)
         {
-            _contacts = contacts;
             InitializeComponent();
-            var vm = new ContactViewModel(contacts);
-            vm.ItemAdded += OnBtnClicked;
+            _contactsViewModel = contactsViewModel;
+            var vm = new ContactViewModel();
+            vm.ItemAdded += _contactsViewModel.OnNewItemAdded;
             vm.ItemCanceled += OnBtnClicked;
             BindingContext = vm;
         }

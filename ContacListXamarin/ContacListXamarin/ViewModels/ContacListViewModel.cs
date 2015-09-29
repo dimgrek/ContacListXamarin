@@ -25,7 +25,7 @@ namespace ContacListXamarin.ViewModels
         public event EventHandler AddItemClicked;
         public event EventHandler<ItemSelectedEventArgs> ItemSelected;
         public event EventHandler<ItemSelectedEventArgs> ItemDeleted;
-        
+
         public void Update()
         {
             Contacts = Contacts;
@@ -53,6 +53,11 @@ namespace ContacListXamarin.ViewModels
                 return;
 
             ItemSelected?.Invoke(this, new ItemSelectedEventArgs { Id = contactItem.ID });
+        }
+
+        public void OnNewItemAdded(object sender, ContactItemEventArgs e)
+        {
+            Contacts.Add(e.ContactItem);
         }
     }
 
