@@ -8,10 +8,10 @@ namespace ContacListXamarin.Views
     {
         private readonly IContactService _contactService = new ContactService();
 
-        public ContactViewPage(int id, INavigation navigation)
+        public ContactViewPage(int id)
         {
             InitializeComponent();
-            var vm = new ContactViewModel(id, DependencyService.Get<IContactService>(), navigation);
+            var vm = new ContactViewModel(id, DependencyService.Get<IContactService>());
             BindingContext = vm;
         }
     }

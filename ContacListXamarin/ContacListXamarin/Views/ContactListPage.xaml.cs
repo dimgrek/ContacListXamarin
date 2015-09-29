@@ -13,20 +13,26 @@ namespace ContacListXamarin.Views
 
         public ContactListPage()
         {
-            _vm = new ContacListViewModel(DependencyService.Get<IContactService>(), Navigation);
+            _vm = new ContacListViewModel(DependencyService.Get<IContactService>());
             BindingContext = _vm;
+            _vm.AddItemClicked += GoToAddContactPage;
             InitializeComponent();
             ContactList.ItemSelected += OnSelection;
         }
 
+        async void GoToAddContactPage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddContactPage());
+        }
+
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+            _vm.Update();
             var contact = _contactService.GetThings();
             ContactList.ItemsSource = contact;
         }
 
-        public void OnDelete(object sender, EventArgs e)
+        private void OnDelete(object sender, EventArgs e)
         {
             var contactToDelete = (ContactItem)((MenuItem)sender).CommandParameter;
             _contactService.Delete(contactToDelete);
@@ -40,8 +46,7 @@ namespace ContacListXamarin.Views
             var contactItem = e.SelectedItem as ContactItem;
             if (contactItem == null)
                 return;
-            //((ListView)sender).SelectedItem = null;
-            await Navigation.PushAsync(new ContactViewPage(contactItem.ID, Navigation));
+            await Navigation.PushAsync(new ContactViewPage(contactItem.ID));
         }
     }
 }

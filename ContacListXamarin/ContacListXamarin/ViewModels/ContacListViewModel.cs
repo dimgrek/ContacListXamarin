@@ -1,22 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ContacListXamarin.Contacts;
 using ContacListXamarin.Model;
-using ContacListXamarin.Views;
 using Xamarin.Forms;
 
 namespace ContacListXamarin.ViewModels
 {
     public class ContacListViewModel
     {
-        private readonly INavigation _navigation;
         private readonly IContactService _service;
 
-
-        public ContacListViewModel(IContactService service, INavigation navigation)
+        public ContacListViewModel(IContactService service)
         {
             _service = service;
-            _navigation = navigation;
             Contacts = new ObservableCollection<ContactItem>(_service.GetThings());
             AddCommand = new Command(Add);
         }
@@ -24,10 +21,16 @@ namespace ContacListXamarin.ViewModels
         public ObservableCollection<ContactItem> Contacts { get; set; }
 
         public ICommand AddCommand { get; private set; }
+        public event EventHandler AddItemClicked;
 
-        async void Add()
+        public void Update()
         {
-            await _navigation.PushAsync(new AddContactPage());
+            Contacts = new ObservableCollection<ContactItem>(_service.GetThings());
+        }
+
+        private void Add()
+        {
+            AddItemClicked.Invoke(this, EventArgs.Empty);
         }
     }
 }

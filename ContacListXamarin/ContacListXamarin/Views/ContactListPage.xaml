@@ -4,9 +4,9 @@
              x:Class="ContacListXamarin.Views.ContactListPage"
              Title="All contacts">
   <ContentPage.ToolbarItems>
-    <ToolbarItem x:Name="addContactBtn" Text="Add" Command="{Binding AddCommand}"/>
+    <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
   </ContentPage.ToolbarItems>
-  <ListView x:Name="ContactList" ItemsSource="{Binding Contacts}">
+  <ListView ItemsSource="{Binding Contacts}" ItemSelected="{Binding OnSelectionCommand}">
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
