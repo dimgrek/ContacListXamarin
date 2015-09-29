@@ -35,6 +35,11 @@ namespace ContacListXamarin.ViewModels
             AddItemClicked?.Invoke(this, EventArgs.Empty);
         }
 
+        public void Delete(object sender, ContactItemEventArgs contactItem)
+        {
+            Contacts.Remove(Contacts.Single(o=>o.ID == contactItem.ContactItem.ID));
+        }
+
         private void Delete(SelectedItemChangedEventArgs e)
         {
             var contactItem = e.SelectedItem as ContactItem;

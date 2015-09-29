@@ -21,8 +21,7 @@ namespace ContacListXamarin.Views
 
         async void OnItemSelected(object sender, ItemSelectedEventArgs e)
         {
-            var itemId = e.Id;
-            await Navigation.PushAsync(new ContactViewPage(e.Id));
+            await Navigation.PushAsync(new ContactViewPage(e.Id, _vm));
         }
 
         async void OnAddBtnClicked(object sender, EventArgs e)
