@@ -58,12 +58,7 @@ namespace ContacListXamarin.ViewModels
         public void OnNewItemAdded(object sender, ContactItemEventArgs e)
         {
             Contacts.Add(e.ContactItem);
-            _service.Add(e.ContactItem.Name, 
-                e.ContactItem.LastName, 
-                e.ContactItem.Address, 
-                e.ContactItem.Email, 
-                e.ContactItem.Telephone, 
-                e.ContactItem.Company);
+            _service.Add(e.ContactItem);
         }
     }
 
